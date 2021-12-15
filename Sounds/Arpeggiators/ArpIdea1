@@ -1,0 +1,12 @@
+(
+~blipArp=SynthDef.new(\blipArp,{
+	arg outBus=0,freq=320,nharm=3,amp=0.5,atk=0.1,rel=0.1;
+	var sig,env;
+	sig=Blip.ar(freq,nharm,amp).scope(1);
+	env=EnvGen.kr(Env([0,amp,0],[atk,rel]),doneAction:2);
+	sig=sig*env;
+	Out.ar(outBus,sig);
+
+}).add;
+)
+~blipArp=Synth.new(\blipArp)
